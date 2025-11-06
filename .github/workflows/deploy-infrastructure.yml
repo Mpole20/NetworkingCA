@@ -20,9 +20,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v3
-
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
@@ -30,19 +27,5 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ env.AWS_REGION }}
 
-    - name: Terraform Init
-      working-directory: infrastructure
-      run: terraform init
-
-    - name: Terraform Validate
-      working-directory: infrastructure
-      run: terraform validate
-
-    - name: Terraform Plan
-      working-directory: infrastructure
-      run: terraform plan
-
-    - name: Terraform Apply
-      working-directory: infrastructure
-      if: github.ref == 'refs/heads/main'
-      run: terraform apply -auto-approve
+    - name: Test AWS
+      run: aws sts get-caller-identity
