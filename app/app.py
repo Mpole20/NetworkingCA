@@ -44,3 +44,16 @@ def home():
     </body>
     </html>
     '''
+
+# ADD THIS HEALTH CHECK FUNCTION
+@app.route('/api/health')
+def health():
+    return jsonify({
+        'status': 'healthy',
+        'timestamp': datetime.datetime.utcnow().isoformat(),
+        'service': 'Python Flask App'
+    })
+
+# KEEP THIS TOO
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=3000, debug=True)
