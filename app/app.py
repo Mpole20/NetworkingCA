@@ -9,271 +9,292 @@ def home():
     return '''
     <html>
     <head>
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval';">
         <style>
-            body {
-                background: radial-gradient(circle, #000 0%, #110011 50%, #220022 100%);
-                margin: 0;
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body { 
+                background: #000;
                 overflow: hidden;
                 font-family: 'Courier New', monospace;
+                cursor: none;
             }
-            
-            .quantum-field {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                background: 
-                    radial-gradient(circle at 20% 80%, #ff00ff 0%, transparent 50%),
-                    radial-gradient(circle at 80% 20%, #00ffff 0%, transparent 50%),
-                    radial-gradient(circle at 40% 40%, #ffff00 0%, transparent 50%);
+
+            /* === HYPER-FLASHING BACKGROUNDS === */
+            .flash-layer-1 {
+                position: fixed; width: 100%; height: 100%;
+                background: radial-gradient(circle, #ff0000, #00ff00, #0000ff);
+                animation: flash1 0.1s infinite alternate;
+                mix-blend-mode: difference;
+            }
+            .flash-layer-2 {
+                position: fixed; width: 100%; height: 100%;
+                background: conic-gradient(from 0deg, red, yellow, lime, aqua, blue, magenta, red);
+                animation: flash2 0.05s infinite linear;
                 mix-blend-mode: overlay;
-                animation: quantumShift 7s infinite alternate;
             }
-            
-            @keyframes quantumShift {
-                0% { filter: hue-rotate(0deg) blur(0px); transform: scale(1); }
-                100% { filter: hue-rotate(360deg) blur(10px); transform: scale(1.2); }
+            @keyframes flash1 { 
+                0% { opacity: 1; filter: hue-rotate(0deg) blur(20px); }
+                100% { opacity: 0.8; filter: hue-rotate(180deg) blur(50px); }
             }
-            
-            .nebula {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                background: 
-                    radial-gradient(circle at 30% 30%, #ff0066 0%, transparent 40%),
-                    radial-gradient(circle at 70% 70%, #0066ff 0%, transparent 40%),
-                    radial-gradient(circle at 50% 50%, #00ff66 0%, transparent 50%);
-                animation: nebulaPulse 15s ease-in-out infinite;
-                opacity: 0.3;
+            @keyframes flash2 { 
+                0% { transform: scale(1) rotate(0deg); opacity: 0.9; }
+                100% { transform: scale(2) rotate(180deg); opacity: 0.3; }
             }
-            
-            @keyframes nebulaPulse {
-                0%, 100% { opacity: 0.2; transform: rotate(0deg); }
-                50% { opacity: 0.6; transform: rotate(180deg); }
-            }
-            
-            .starfield {
-                position: absolute;
-                width: 100%;
-                height: 100%;
+
+            /* === SEIZURE INDUCING GRIDS === */
+            .grid-overlay {
+                position: fixed; width: 200%; height: 200%;
                 background-image: 
-                    radial-gradient(2px 2px at 20% 30%, #fff 50%, transparent 100%),
-                    radial-gradient(2px 2px at 40% 70%, #fff 50%, transparent 100%),
-                    radial-gradient(1px 1px at 60% 20%, #fff 50%, transparent 100%),
-                    radial-gradient(1px 1px at 80% 80%, #fff 50%, transparent 100%);
-                background-size: 200px 200px;
-                animation: starTwinkle 3s infinite alternate;
+                    linear-gradient(90deg, #fff 1px, transparent 1px),
+                    linear-gradient(0deg, #fff 1px, transparent 1px);
+                background-size: 10px 10px;
+                animation: gridMove 0.02s infinite linear;
+                mix-blend-mode: exclusion;
             }
-            
-            @keyframes starTwinkle {
-                0% { opacity: 0.3; }
-                100% { opacity: 1; }
+            @keyframes gridMove {
+                0% { transform: translate(0px, 0px) rotate(0deg); }
+                100% { transform: translate(-10px, -10px) rotate(1deg); }
             }
-            
-            .black-hole {
+
+            /* === QUANTUM PARTICLES === */
+            .particle-field {
+                position: fixed; width: 100%; height: 100%;
+                pointer-events: none;
+            }
+            .particle {
                 position: absolute;
-                top: 50%;
-                left: 50%;
-                width: 200px;
-                height: 200px;
-                background: radial-gradient(circle, #000 0%, #330033 70%, #ff00ff 100%);
+                width: 4px; height: 4px;
+                background: #fff;
                 border-radius: 50%;
-                transform: translate(-50%, -50%);
-                animation: singularity 10s infinite linear;
-                box-shadow: 
-                    0 0 100px #ff00ff,
-                    0 0 200px #00ffff,
-                    inset 0 0 50px #000;
+                animation: particlePop 0.5s infinite alternate;
+                filter: blur(1px);
             }
-            
-            @keyframes singularity {
-                0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
-                50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.2); }
-                100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+            @keyframes particlePop {
+                0% { transform: scale(0) rotate(0deg); opacity: 1; }
+                100% { transform: scale(10) rotate(360deg); opacity: 0; }
             }
-            
-            .accretion-disk {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                width: 500px;
-                height: 100px;
-                background: conic-gradient(from 0deg, #ff00ff, #00ffff, #ffff00, #ff00ff);
-                border-radius: 50%;
-                transform: translate(-50%, -50%) rotateX(75deg);
-                animation: diskRotate 3s infinite linear;
-                opacity: 0.7;
-                filter: blur(5px);
+
+            /* === STROBE TEXT === */
+            .strobe-text {
+                position: fixed;
+                font-size: 120px;
+                font-weight: 900;
+                text-transform: uppercase;
+                animation: strobe 0.03s infinite;
+                text-shadow: 0 0 50px currentColor;
+                mix-blend-mode: difference;
+                z-index: 1000;
             }
-            
-            @keyframes diskRotate {
-                0% { transform: translate(-50%, -50%) rotateX(75deg) rotate(0deg); }
-                100% { transform: translate(-50%, -50%) rotateX(75deg) rotate(360deg); }
+            @keyframes strobe {
+                0% { opacity: 1; color: #ff0000; transform: skew(20deg, 10deg); }
+                25% { opacity: 0; color: #00ff00; transform: skew(-20deg, -10deg); }
+                50% { opacity: 1; color: #0000ff; transform: skew(30deg, 5deg); }
+                75% { opacity: 0; color: #ffff00; transform: skew(-30deg, 5deg); }
+                100% { opacity: 1; color: #ff00ff; transform: skew(20deg, 10deg); }
             }
-            
-            .wormhole {
-                position: absolute;
-                top: 20%;
-                left: 20%;
-                width: 100px;
-                height: 100px;
-                border: 2px solid #00ffff;
-                border-radius: 50%;
-                animation: wormholeSpin 8s infinite linear;
-                box-shadow: 
-                    0 0 50px #00ffff,
-                    inset 0 0 50px #00ffff;
-            }
-            
-            @keyframes wormholeSpin {
-                0% { transform: rotate(0deg) scale(1); }
-                50% { transform: rotate(180deg) scale(1.5); }
-                100% { transform: rotate(360deg) scale(1); }
-            }
-            
-            .content {
-                position: relative;
-                z-index: 100;
-                color: #fff;
-                text-align: center;
-                padding: 50px;
-                background: rgba(0, 0, 0, 0.8);
-                margin: 100px auto;
-                width: 60%;
-                border: 3px solid transparent;
-                background-clip: padding-box;
-                animation: contentGlow 2s infinite alternate;
-            }
-            
-            @keyframes contentGlow {
-                0% { 
-                    border-image: linear-gradient(45deg, #ff00ff, #00ffff) 1;
-                    box-shadow: 0 0 50px #ff00ff;
-                }
-                100% { 
-                    border-image: linear-gradient(45deg, #00ffff, #ff00ff) 1;
-                    box-shadow: 0 0 50px #00ffff;
-                }
-            }
-            
-            .ascii-art {
-                font-size: 4px;
+
+            /* === MATRIX RAIN ON STEROIDS === */
+            .matrix-rain {
+                position: fixed; width: 100%; height: 100%;
+                background: #000;
+                color: #0f0;
+                font-size: 14px;
                 line-height: 1;
-                white-space: pre;
-                animation: asciiWarp 5s infinite alternate;
-                filter: hue-rotate(0deg);
-                margin: 20px 0;
+                overflow: hidden;
+                animation: matrixColor 0.1s infinite;
             }
-            
-            @keyframes asciiWarp {
-                0% { transform: perspective(500px) rotateX(0deg) rotateY(0deg); filter: hue-rotate(0deg); }
-                100% { transform: perspective(500px) rotateX(10deg) rotateY(10deg); filter: hue-rotate(360deg); }
+            @keyframes matrixColor {
+                0% { color: #0f0; }
+                33% { color: #f0f; }
+                66% { color: #0ff; }
+                100% { color: #ff0; }
             }
-            
+
+            /* === SPINNING VORTEX === */
+            .vortex {
+                position: fixed;
+                top: 50%; left: 50%;
+                width: 200vmax; height: 200vmax;
+                background: conic-gradient(from 0deg, red, orange, yellow, green, blue, indigo, violet, red);
+                animation: vortexSpin 0.3s infinite linear;
+                border-radius: 50%;
+                mix-blend-mode: hard-light;
+            }
+            @keyframes vortexSpin {
+                0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+                100% { transform: translate(-50%, -50%) rotate(360deg) scale(1.5); }
+            }
+
+            /* === GLITCH EFFECTS === */
+            .glitch-layer {
+                position: fixed; width: 100%; height: 100%;
+                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="black"/><path d="M0 0L100 100M100 0L0 100" stroke="white" stroke-width="1"/></svg>');
+                animation: glitch 0.02s infinite;
+                mix-blend-mode: overlay;
+            }
+            @keyframes glitch {
+                0% { transform: translate(0px, 0px); opacity: 1; }
+                25% { transform: translate(5px, -5px); opacity: 0.8; }
+                50% { transform: translate(-5px, 5px); opacity: 0.6; }
+                75% { transform: translate(3px, -3px); opacity: 0.9; }
+                100% { transform: translate(-3px, 3px); opacity: 1; }
+            }
+
+            /* === CONTENT BOX - Barely readable === */
+            .content {
+                position: fixed;
+                top: 50%; left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(0,0,0,0.9);
+                padding: 50px;
+                border: 10px solid;
+                animation: borderFlash 0.05s infinite;
+                z-index: 10000;
+                text-align: center;
+            }
+            @keyframes borderFlash {
+                0% { border-color: #ff0000; box-shadow: 0 0 100px #ff0000; }
+                25% { border-color: #00ff00; box-shadow: 0 0 100px #00ff00; }
+                50% { border-color: #0000ff; box-shadow: 0 0 100px #0000ff; }
+                75% { border-color: #ffff00; box-shadow: 0 0 100px #ffff00; }
+                100% { border-color: #ff00ff; box-shadow: 0 0 100px #ff00ff; }
+            }
+
             h1 {
                 font-size: 3em;
-                background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00);
+                background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff, #ffff00);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
-                animation: titlePulse 2s infinite alternate;
-                text-shadow: 0 0 30px currentColor;
+                animation: textStrobe 0.05s infinite;
             }
-            
-            @keyframes titlePulse {
-                0% { transform: scale(1); }
-                100% { transform: scale(1.1); }
+            @keyframes textStrobe {
+                0% { transform: scale(1) skew(10deg); }
+                50% { transform: scale(1.2) skew(-10deg); }
+                100% { transform: scale(1) skew(10deg); }
             }
         </style>
     </head>
     <body>
-        <div class="quantum-field"></div>
-        <div class="nebula"></div>
-        <div class="starfield"></div>
-        <div class="black-hole"></div>
-        <div class="accretion-disk"></div>
-        <div class="wormhole"></div>
-        
+        <div class="flash-layer-1"></div>
+        <div class="flash-layer-2"></div>
+        <div class="grid-overlay"></div>
+        <div class="vortex"></div>
+        <div class="matrix-rain" id="matrix"></div>
+        <div class="particle-field" id="particles"></div>
+        <div class="glitch-layer"></div>
+
+        <!-- Strobe words everywhere -->
+        <div class="strobe-text" style="top: 10%; left: 5%;">WARNING</div>
+        <div class="strobe-text" style="top: 30%; right: 5%;">EPILEPSY</div>
+        <div class="strobe-text" style="bottom: 20%; left: 20%;">OVERLOAD</div>
+        <div class="strobe-text" style="bottom: 40%; right: 15%;">MAXIMUM</div>
+
         <div class="content">
-            <h1>🌌 QUANTUM ECS DEPLOYMENT 🌌</h1>
-            
-            <div class="ascii-art" id="quantumAscii"></div>
-            
-            <div style="font-size: 1.5em; margin: 30px 0; animation: colorShift 3s infinite;">
-                ⚡ HYPERSCALE CONTAINER ORCHESTRATION ⚡
-            </div>
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0;">
-                <div style="animation: float 4s infinite ease-in-out;">
-                    🐍 PYTHON QUANTUM CORE
-                </div>
-                <div style="animation: float 4s infinite ease-in-out reverse;">
-                    🐳 DOCKER EVENT HORIZON
-                </div>
-                <div style="animation: float 4s infinite ease-in-out 1s;">
-                    ☁️ TERRAFORM SINGULARITY
-                </div>
-                <div style="animation: float 4s infinite ease-in-out reverse 1s;">
-                    ⚡ AWS ECS NEXUS
-                </div>
-            </div>
-            
-            <p><a href="/api/health" style="color: #00ffff; font-size: 1.2em; text-decoration: none; animation: linkPulse 1s infinite;">
-                🔬 QUANTUM HEALTH ANALYSIS
-            </a></p>
+            <h1>💀 NEURAL MELTDOWN 💀</h1>
+            <p style="color: white; font-size: 1.5em; animation: strobe 0.05s infinite;">
+                ⚡ QUANTUM ECS DEPLOYMENT SUCCESS ⚡
+            </p>
+            <p style="margin: 20px 0;">
+                <span style="animation: strobe 0.03s infinite;">PYTHON</span> • 
+                <span style="animation: strobe 0.04s infinite;">DOCKER</span> • 
+                <span style="animation: strobe 0.05s infinite;">TERRAFORM</span> • 
+                <span style="animation: strobe 0.02s infinite;">AWS ECS</span>
+            </p>
+            <a href="/api/health" style="color: white; font-size: 2em; animation: strobe 0.01s infinite;">
+                🏥 HEALTH CHECK 🏥
+            </a>
         </div>
 
         <script>
-            // Quantum ASCII generator
-            const quantumChars = '♾️⚛️✨⭐🌟🔮🌌🌀💫🌠📡🔭🛰️';
-            const asciiElement = document.getElementById('quantumAscii');
+            // Matrix rain with maximum intensity
+            const matrix = document.getElementById('matrix');
+            const chars = '01!@#$%^&*()_+-=[]{}|;:,.<>?║╗╝╣╩╚╔╠╦╬';
+            let matrixText = '';
             
-            function generateQuantumASCII() {
-                let ascii = '';
-                for (let y = 0; y < 20; y++) {
-                    for (let x = 0; x < 40; x++) {
-                        if (Math.random() > 0.7) {
-                            ascii += quantumChars[Math.floor(Math.random() * quantumChars.length)];
-                        } else {
-                            ascii += ' ';
-                        }
+            function updateMatrix() {
+                matrixText = '';
+                for (let i = 0; i < 5000; i++) {
+                    matrixText += Math.random() > 0.3 ? chars[Math.floor(Math.random() * chars.length)] : ' ';
+                }
+                matrix.innerHTML = matrixText;
+            }
+            setInterval(updateMatrix, 50);
+
+            // Particle explosion
+            const particleField = document.getElementById('particles');
+            function createParticles() {
+                for (let i = 0; i < 100; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + 'vw';
+                    particle.style.top = Math.random() * 100 + 'vh';
+                    particle.style.animationDelay = Math.random() + 's';
+                    particle.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    particleField.appendChild(particle);
+                    
+                    setTimeout(() => particle.remove(), 1000);
+                }
+            }
+            setInterval(createParticles, 100);
+
+            // Background color seizure
+            setInterval(() => {
+                document.body.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            }, 100);
+
+            // Random DOM manipulation
+            setInterval(() => {
+                const elements = document.querySelectorAll('*');
+                elements.forEach(el => {
+                    if (Math.random() > 0.7) {
+                        el.style.transform = `scale(${0.5 + Math.random()}) rotate(${Math.random() * 360}deg)`;
                     }
-                    ascii += '\\n';
-                }
-                asciiElement.textContent = ascii;
-            }
-            
-            generateQuantumASCII();
-            setInterval(generateQuantumASCII, 500);
-            
-            // Create multiple wormholes
-            for (let i = 0; i < 5; i++) {
-                const wormhole = document.createElement('div');
-                wormhole.className = 'wormhole';
-                wormhole.style.left = Math.random() * 100 + '%';
-                wormhole.style.top = Math.random() * 100 + '%';
-                wormhole.style.width = (50 + Math.random() * 100) + 'px';
-                wormhole.style.height = (50 + Math.random() * 100) + 'px';
-                wormhole.style.animationDelay = Math.random() * 5 + 's';
-                document.body.appendChild(wormhole);
-            }
-            
-            // Pulsing background colors
+                });
+            }, 200);
+
+            // Audio context simulation (visualizer-like effects)
             setInterval(() => {
-                document.body.style.background = `radial-gradient(circle, #${Math.floor(Math.random()*16777215).toString(16)} 0%, #${Math.floor(Math.random()*16777215).toString(16)} 100%)`;
-            }, 3000);
-            
-            // Audio visualization simulation
-            const styles = document.styleSheets[0];
+                const newStyle = document.createElement('style');
+                newStyle.textContent = `
+                    @keyframes seizure${Date.now()} {
+                        0% { filter: invert(1) hue-rotate(0deg) blur(${Math.random() * 20}px); }
+                        100% { filter: invert(0) hue-rotate(360deg) blur(${Math.random() * 20}px); }
+                    }
+                    body { animation: seizure${Date.now()} 0.1s infinite; }
+                `;
+                document.head.appendChild(newStyle);
+                setTimeout(() => newStyle.remove(), 1000);
+            }, 500);
+
+            // Mouse follower with trail
+            document.addEventListener('mousemove', (e) => {
+                const trail = document.createElement('div');
+                trail.style.position = 'fixed';
+                trail.style.left = e.clientX + 'px';
+                trail.style.top = e.clientY + 'px';
+                trail.style.width = '50px';
+                trail.style.height = '50px';
+                trail.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                trail.style.borderRadius = '50%';
+                trail.style.animation = 'particlePop 0.5s forwards';
+                trail.style.mixBlendMode = 'difference';
+                document.body.appendChild(trail);
+                setTimeout(() => trail.remove(), 500);
+            });
+
+            // Random alert sounds simulation
             setInterval(() => {
-                const randomRule = `
-                @keyframes randomPulse {
-                    0% { transform: scale(${0.8 + Math.random() * 0.4}); }
-                    100% { transform: scale(${0.8 + Math.random() * 0.4}); }
-                }`;
-                if (styles.cssRules[0].name === 'randomPulse') {
-                    styles.deleteRule(0);
+                if (Math.random() > 0.9) {
+                    // Visual "beep" effect
+                    const beep = document.createElement('div');
+                    beep.style.position = 'fixed';
+                    beep.style.inset = '0';
+                    beep.style.background = '#fff';
+                    beep.style.animation = 'flash1 0.05s';
+                    document.body.appendChild(beep);
+                    setTimeout(() => beep.remove(), 100);
                 }
-                styles.insertRule(randomRule, 0);
-            }, 2000);
+            }, 500);
         </script>
     </body>
     </html>
