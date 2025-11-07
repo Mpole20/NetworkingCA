@@ -11,115 +11,50 @@ def home():
     <head>
         <style>
             body {
-                background-color: #0a0a2a;
-                color: #00ffcc;
-                font-family: 'Courier New', monospace;
+                background: linear-gradient(45deg, #000, #1a0033);
+                color: #00ffff;
+                font-family: monospace;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
                 height: 100vh;
                 margin: 0;
-                overflow: hidden;
             }
-            .dna-container {
-                animation: spinDNA 4s linear infinite;
-                transform-style: preserve-3d;
-            }
-            .dna {
-                font-size: 6px;
-                line-height: 0.8;
+            .wave {
+                font-size: 12px;
+                line-height: 1;
                 white-space: pre;
-                text-shadow: 0 0 10px #00ffcc;
+                animation: wave 2s ease-in-out infinite;
+                text-shadow: 0 0 10px #00ffff;
             }
-            @keyframes spinDNA {
-                0% { transform: rotateY(0deg) rotateX(10deg); }
-                100% { transform: rotateY(360deg) rotateX(10deg); }
+            @keyframes wave {
+                0%, 100% { transform: translateY(0px) scale(1); }
+                50% { transform: translateY(-10px) scale(1.05); }
             }
-            .pulse {
-                animation: pulse 2s ease-in-out infinite alternate;
+            .ripple {
+                animation: ripple 3s linear infinite;
             }
-            @keyframes pulse {
-                0% { color: #00ffcc; text-shadow: 0 0 5px #00ffcc; }
-                100% { color: #ff00cc; text-shadow: 0 0 15px #ff00cc; }
+            @keyframes ripple {
+                0% { transform: scale(1); opacity: 1; }
+                100% { transform: scale(1.5); opacity: 0; }
             }
         </style>
     </head>
     <body>
-        <h1 class="pulse">ECS Project Deployment</h1>
-        <div class="dna-container">
-            <div class="dna" id="dnaHelix"></div>
+        <h1>ECS Project Deployment</h1>
+        <div class="wave">
+        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+        ░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░
+        ░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░
+        ▒▓██████████████████████████▓▒
+        ▒▓██████████████████████████▓▒
+        ░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░
+        ░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░
+        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
         </div>
-        <p>Python Flask + Docker + Terraform + AWS ECS</p>
-        <p><a href="/api/health" style="color: #00ffcc;">Health Check</a></p>
-        
-        <script>
-            const dnaFrames = [
-                `
-          O
-         / \\
-        O   O
-         \\ /
-          O
-         / \\
-        O   O
-         \\ /
-          O
-         / \\
-        O   O
-         \\ /
-          O
-                `,
-                `
-           O
-          / \\
-         O   O
-          \\ /
-           O
-          / \\
-         O   O
-          \\ /
-           O
-          / \\
-         O   O
-          \\ /
-           O
-                `,
-                `
-            O
-           / \\
-          O   O
-           \\ /
-            O
-           / \\
-          O   O
-           \\ /
-            O
-           / \\
-          O   O
-           \\ /
-            O
-                `
-            ];
-            
-            let dnaFrame = 0;
-            const dnaElement = document.getElementById('dnaHelix');
-            
-            function animateDNA() {
-                dnaElement.textContent = dnaFrames[dnaFrame];
-                dnaFrame = (dnaFrame + 1) % dnaFrames.length;
-            }
-            
-            // Multiple animation speeds
-            setInterval(animateDNA, 300);
-            
-            // Add some random color changes
-            setInterval(() => {
-                const colors = ['#00ffcc', '#ff00cc', '#00ccff', '#ccff00'];
-                const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                document.body.style.color = randomColor;
-            }, 2000);
-        </script>
+        <p class="ripple">Python Flask + Docker + Terraform + AWS ECS</p>
+        <p><a href="/api/health" style="color: #ff00ff;">Health Check</a></p>
     </body>
     </html>
     '''
