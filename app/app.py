@@ -11,143 +11,269 @@ def home():
     <head>
         <style>
             body {
-                background: #000;
-                color: #0f0;
-                font-family: 'Courier New', monospace;
+                background: radial-gradient(circle, #000 0%, #110011 50%, #220022 100%);
                 margin: 0;
                 overflow: hidden;
-                position: relative;
+                font-family: 'Courier New', monospace;
             }
-            .matrix-container {
+            
+            .quantum-field {
                 position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                display: flex;
-                flex-wrap: wrap;
-                pointer-events: none;
-            }
-            .matrix-char {
-                font-size: 14px;
-                animation: matrixFall linear infinite;
-                opacity: 0;
-                text-shadow: 0 0 8px #0f0, 0 0 16px #0f0;
-            }
-            @keyframes matrixFall {
-                0% { 
-                    transform: translateY(-100px) rotate(0deg);
-                    opacity: 0; 
-                }
-                5% { 
-                    opacity: 1; 
-                }
-                95% { 
-                    opacity: 1; 
-                }
-                100% { 
-                    transform: translateY(100vh) rotate(360deg);
-                    opacity: 0; 
-                }
-            }
-            .cyber-grid {
-                position: absolute;
-                top: 0;
-                left: 0;
                 width: 100%;
                 height: 100%;
                 background: 
-                    linear-gradient(90deg, transparent 99%, #0f0 99%),
-                    linear-gradient(0deg, transparent 99%, #0f0 99%);
-                background-size: 50px 50px;
-                animation: gridPulse 2s ease-in-out infinite alternate;
+                    radial-gradient(circle at 20% 80%, #ff00ff 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, #00ffff 0%, transparent 50%),
+                    radial-gradient(circle at 40% 40%, #ffff00 0%, transparent 50%);
+                mix-blend-mode: overlay;
+                animation: quantumShift 7s infinite alternate;
+            }
+            
+            @keyframes quantumShift {
+                0% { filter: hue-rotate(0deg) blur(0px); transform: scale(1); }
+                100% { filter: hue-rotate(360deg) blur(10px); transform: scale(1.2); }
+            }
+            
+            .nebula {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: 
+                    radial-gradient(circle at 30% 30%, #ff0066 0%, transparent 40%),
+                    radial-gradient(circle at 70% 70%, #0066ff 0%, transparent 40%),
+                    radial-gradient(circle at 50% 50%, #00ff66 0%, transparent 50%);
+                animation: nebulaPulse 15s ease-in-out infinite;
                 opacity: 0.3;
             }
-            @keyframes gridPulse {
-                0% { opacity: 0.1; }
-                100% { opacity: 0.5; }
+            
+            @keyframes nebulaPulse {
+                0%, 100% { opacity: 0.2; transform: rotate(0deg); }
+                50% { opacity: 0.6; transform: rotate(180deg); }
             }
+            
+            .starfield {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background-image: 
+                    radial-gradient(2px 2px at 20% 30%, #fff 50%, transparent 100%),
+                    radial-gradient(2px 2px at 40% 70%, #fff 50%, transparent 100%),
+                    radial-gradient(1px 1px at 60% 20%, #fff 50%, transparent 100%),
+                    radial-gradient(1px 1px at 80% 80%, #fff 50%, transparent 100%);
+                background-size: 200px 200px;
+                animation: starTwinkle 3s infinite alternate;
+            }
+            
+            @keyframes starTwinkle {
+                0% { opacity: 0.3; }
+                100% { opacity: 1; }
+            }
+            
+            .black-hole {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 200px;
+                height: 200px;
+                background: radial-gradient(circle, #000 0%, #330033 70%, #ff00ff 100%);
+                border-radius: 50%;
+                transform: translate(-50%, -50%);
+                animation: singularity 10s infinite linear;
+                box-shadow: 
+                    0 0 100px #ff00ff,
+                    0 0 200px #00ffff,
+                    inset 0 0 50px #000;
+            }
+            
+            @keyframes singularity {
+                0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+                50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.2); }
+                100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+            }
+            
+            .accretion-disk {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 500px;
+                height: 100px;
+                background: conic-gradient(from 0deg, #ff00ff, #00ffff, #ffff00, #ff00ff);
+                border-radius: 50%;
+                transform: translate(-50%, -50%) rotateX(75deg);
+                animation: diskRotate 3s infinite linear;
+                opacity: 0.7;
+                filter: blur(5px);
+            }
+            
+            @keyframes diskRotate {
+                0% { transform: translate(-50%, -50%) rotateX(75deg) rotate(0deg); }
+                100% { transform: translate(-50%, -50%) rotateX(75deg) rotate(360deg); }
+            }
+            
+            .wormhole {
+                position: absolute;
+                top: 20%;
+                left: 20%;
+                width: 100px;
+                height: 100px;
+                border: 2px solid #00ffff;
+                border-radius: 50%;
+                animation: wormholeSpin 8s infinite linear;
+                box-shadow: 
+                    0 0 50px #00ffff,
+                    inset 0 0 50px #00ffff;
+            }
+            
+            @keyframes wormholeSpin {
+                0% { transform: rotate(0deg) scale(1); }
+                50% { transform: rotate(180deg) scale(1.5); }
+                100% { transform: rotate(360deg) scale(1); }
+            }
+            
             .content {
                 position: relative;
-                z-index: 10;
+                z-index: 100;
+                color: #fff;
                 text-align: center;
-                background: rgba(0, 20, 0, 0.8);
-                padding: 30px;
-                border: 2px solid #0f0;
-                box-shadow: 0 0 30px #0f0;
-                animation: glow 3s ease-in-out infinite alternate;
+                padding: 50px;
+                background: rgba(0, 0, 0, 0.8);
+                margin: 100px auto;
+                width: 60%;
+                border: 3px solid transparent;
+                background-clip: padding-box;
+                animation: contentGlow 2s infinite alternate;
             }
-            @keyframes glow {
-                0% { box-shadow: 0 0 20px #0f0, 0 0 40px #0f0; }
-                100% { box-shadow: 0 0 30px #0f0, 0 0 60px #0f0, 0 0 80px #0f0; }
+            
+            @keyframes contentGlow {
+                0% { 
+                    border-image: linear-gradient(45deg, #ff00ff, #00ffff) 1;
+                    box-shadow: 0 0 50px #ff00ff;
+                }
+                100% { 
+                    border-image: linear-gradient(45deg, #00ffff, #ff00ff) 1;
+                    box-shadow: 0 0 50px #00ffff;
+                }
             }
+            
+            .ascii-art {
+                font-size: 4px;
+                line-height: 1;
+                white-space: pre;
+                animation: asciiWarp 5s infinite alternate;
+                filter: hue-rotate(0deg);
+                margin: 20px 0;
+            }
+            
+            @keyframes asciiWarp {
+                0% { transform: perspective(500px) rotateX(0deg) rotateY(0deg); filter: hue-rotate(0deg); }
+                100% { transform: perspective(500px) rotateX(10deg) rotateY(10deg); filter: hue-rotate(360deg); }
+            }
+            
             h1 {
-                animation: textGlitch 5s infinite;
-                text-shadow: 2px 2px 0 #f0f, -2px -2px 0 #0ff;
+                font-size: 3em;
+                background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                animation: titlePulse 2s infinite alternate;
+                text-shadow: 0 0 30px currentColor;
             }
-            @keyframes textGlitch {
-                0%, 100% { transform: translateX(0); }
-                10% { transform: translateX(-2px); }
-                20% { transform: translateX(2px); }
-                30% { transform: translateX(-2px); }
-                40% { transform: translateX(2px); }
-                50% { transform: translateX(0); }
+            
+            @keyframes titlePulse {
+                0% { transform: scale(1); }
+                100% { transform: scale(1.1); }
             }
         </style>
     </head>
     <body>
-        <div class="cyber-grid"></div>
-        <div class="matrix-container" id="matrix"></div>
+        <div class="quantum-field"></div>
+        <div class="nebula"></div>
+        <div class="starfield"></div>
+        <div class="black-hole"></div>
+        <div class="accretion-disk"></div>
+        <div class="wormhole"></div>
         
         <div class="content">
-            <h1>⚡ CYBER ECS DEPLOYMENT ⚡</h1>
-            <div style="font-size: 24px; margin: 20px 0;">
-            [██████████] 100% DEPLOYED
+            <h1>🌌 QUANTUM ECS DEPLOYMENT 🌌</h1>
+            
+            <div class="ascii-art" id="quantumAscii"></div>
+            
+            <div style="font-size: 1.5em; margin: 30px 0; animation: colorShift 3s infinite;">
+                ⚡ HYPERSCALE CONTAINER ORCHESTRATION ⚡
             </div>
-            <div style="animation: pulse 1s infinite;">
-            🔥 REAL-TIME CONTAINER ORCHESTRATION 🔥
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0;">
+                <div style="animation: float 4s infinite ease-in-out;">
+                    🐍 PYTHON QUANTUM CORE
+                </div>
+                <div style="animation: float 4s infinite ease-in-out reverse;">
+                    🐳 DOCKER EVENT HORIZON
+                </div>
+                <div style="animation: float 4s infinite ease-in-out 1s;">
+                    ☁️ TERRAFORM SINGULARITY
+                </div>
+                <div style="animation: float 4s infinite ease-in-out reverse 1s;">
+                    ⚡ AWS ECS NEXUS
+                </div>
             </div>
-            <p style="margin: 20px 0;">
-            PYTHON ⚡ DOCKER ⚡ TERRAFORM ⚡ AWS ECS
-            </p>
-            <p><a href="/api/health" style="color: #0ff; text-decoration: none; font-weight: bold;">
-            🔍 SYSTEM HEALTH SCAN
+            
+            <p><a href="/api/health" style="color: #00ffff; font-size: 1.2em; text-decoration: none; animation: linkPulse 1s infinite;">
+                🔬 QUANTUM HEALTH ANALYSIS
             </a></p>
         </div>
 
         <script>
-            // Matrix digital rain
-            const chars = '01アイウエオカキクケコサシスセソタチツテト';
-            const matrixContainer = document.getElementById('matrix');
+            // Quantum ASCII generator
+            const quantumChars = '♾️⚛️✨⭐🌟🔮🌌🌀💫🌠📡🔭🛰️';
+            const asciiElement = document.getElementById('quantumAscii');
             
-            function createMatrix() {
-                for (let i = 0; i < 150; i++) {
-                    const char = document.createElement('div');
-                    char.className = 'matrix-char';
-                    char.textContent = chars[Math.floor(Math.random() * chars.length)];
-                    char.style.left = Math.random() * 100 + 'vw';
-                    char.style.animationDelay = Math.random() * 10 + 's';
-                    char.style.animationDuration = (3 + Math.random() * 5) + 's';
-                    char.style.fontSize = (10 + Math.random() * 10) + 'px';
-                    char.style.color = `hsl(${Math.random() * 120 + 60}, 100%, 50%)`;
-                    matrixContainer.appendChild(char);
+            function generateQuantumASCII() {
+                let ascii = '';
+                for (let y = 0; y < 20; y++) {
+                    for (let x = 0; x < 40; x++) {
+                        if (Math.random() > 0.7) {
+                            ascii += quantumChars[Math.floor(Math.random() * quantumChars.length)];
+                        } else {
+                            ascii += ' ';
+                        }
+                    }
+                    ascii += '\\n';
                 }
+                asciiElement.textContent = ascii;
             }
             
-            createMatrix();
+            generateQuantumASCII();
+            setInterval(generateQuantumASCII, 500);
             
-            // Pulsing effects
+            // Create multiple wormholes
+            for (let i = 0; i < 5; i++) {
+                const wormhole = document.createElement('div');
+                wormhole.className = 'wormhole';
+                wormhole.style.left = Math.random() * 100 + '%';
+                wormhole.style.top = Math.random() * 100 + '%';
+                wormhole.style.width = (50 + Math.random() * 100) + 'px';
+                wormhole.style.height = (50 + Math.random() * 100) + 'px';
+                wormhole.style.animationDelay = Math.random() * 5 + 's';
+                document.body.appendChild(wormhole);
+            }
+            
+            // Pulsing background colors
             setInterval(() => {
-                document.body.style.background = `hsl(${Math.random() * 360}, 50%, 5%)`;
+                document.body.style.background = `radial-gradient(circle, #${Math.floor(Math.random()*16777215).toString(16)} 0%, #${Math.floor(Math.random()*16777215).toString(16)} 100%)`;
+            }, 3000);
+            
+            // Audio visualization simulation
+            const styles = document.styleSheets[0];
+            setInterval(() => {
+                const randomRule = `
+                @keyframes randomPulse {
+                    0% { transform: scale(${0.8 + Math.random() * 0.4}); }
+                    100% { transform: scale(${0.8 + Math.random() * 0.4}); }
+                }`;
+                if (styles.cssRules[0].name === 'randomPulse') {
+                    styles.deleteRule(0);
+                }
+                styles.insertRule(randomRule, 0);
             }, 2000);
-            
-            // Add glitch effect occasionally
-            setInterval(() => {
-                document.querySelector('h1').style.transform = 'skew(10deg, 0deg)';
-                setTimeout(() => {
-                    document.querySelector('h1').style.transform = 'skew(0deg, 0deg)';
-                }, 100);
-            }, 5000);
         </script>
     </body>
     </html>
