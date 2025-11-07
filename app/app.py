@@ -9,400 +9,368 @@ def home():
     return '''
 <html>
 <head>
-    <title>BRAIN MELTER 9000</title>
+    <title>7AM VIBES</title>
     <style>
-        * { 
-            margin: 0; padding: 0; box-sizing: border-box; 
-            animation-duration: 0.02s !important;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
-        body { 
-            background: #000; 
+        body {
+            background: linear-gradient(to bottom, #1a1a2e, #16213e);
             overflow: hidden;
-            font-family: Arial, sans-serif;
-            cursor: none;
+            font-family: 'Courier New', monospace;
+            height: 100vh;
+            perspective: 1000px;
         }
 
-        /* === HYPE BEAST BACKGROUND === */
-        .hype-grid {
+        /* === SHAKY CAM EFFECT === */
+        @keyframes shakyCam {
+            0% { transform: translate(0px, 0px) rotate(0deg); }
+            10% { transform: translate(-1px, 1px) rotate(-0.2deg); }
+            20% { transform: translate(2px, -1px) rotate(0.3deg); }
+            30% { transform: translate(-2px, 2px) rotate(0.1deg); }
+            40% { transform: translate(1px, -2px) rotate(-0.3deg); }
+            50% { transform: translate(-1px, 1px) rotate(0.2deg); }
+            60% { transform: translate(2px, -1px) rotate(-0.1deg); }
+            70% { transform: translate(-2px, 2px) rotate(0.3deg); }
+            80% { transform: translate(1px, -2px) rotate(-0.2deg); }
+            90% { transform: translate(-1px, 1px) rotate(0.1deg); }
+            100% { transform: translate(0px, 0px) rotate(0deg); }
+        }
+
+        /* === POV BODY === */
+        .pov-body {
             position: fixed;
-            width: 500%; height: 500%;
-            background: 
-                repeating-linear-gradient(90deg, #ff00ff 0px, #ff00ff 10px, transparent 10px, transparent 20px),
-                repeating-linear-gradient(0deg, #00ffff 0px, #00ffff 10px, transparent 10px, transparent 20px),
-                repeating-linear-gradient(45deg, #ffff00 0px, #ffff00 5px, transparent 5px, transparent 10px);
-            animation: gridMove 0.1s infinite linear;
-            mix-blend-mode: overlay;
-        }
-        
-        @keyframes gridMove {
-            0% { transform: translateX(0px) rotate(0deg); }
-            100% { transform: translateX(-100px) rotate(1deg); }
+            width: 100%;
+            height: 100%;
+            animation: shakyCam 0.2s infinite;
+            transform-style: preserve-3d;
         }
 
-        /* === TRENDING STROBE EFFECT === */
-        .strobe-overlay {
-            position: fixed;
-            width: 100%; height: 100%;
-            background: radial-gradient(circle, #ff0000, #00ff00, #0000ff);
-            animation: hypeStrobe 0.05s infinite alternate;
-            mix-blend-mode: difference;
-        }
-        
-        @keyframes hypeStrobe {
-            0% { opacity: 1; filter: hue-rotate(0deg) blur(0px); }
-            100% { opacity: 0.3; filter: hue-rotate(180deg) blur(20px); }
-        }
-
-        /* === VIRAL TEXT EFFECTS === */
-        .hype-text {
-            position: fixed;
-            font-size: 120px;
-            font-weight: 900;
-            text-transform: uppercase;
-            animation: textHype 0.03s infinite;
-            text-shadow: 
-                0 0 20px #fff,
-                0 0 40px #ff00ff,
-                0 0 60px #00ffff;
-            mix-blend-mode: overlay;
-            z-index: 1000;
-        }
-        
-        @keyframes textHype {
-            0% { 
-                color: #ff0000; 
-                transform: scale(1) skew(10deg, 5deg) rotate(0deg);
-                text-shadow: 0 0 50px #ff0000;
-            }
-            25% { 
-                color: #00ff00; 
-                transform: scale(1.2) skew(-10deg, -5deg) rotate(5deg);
-                text-shadow: 0 0 50px #00ff00;
-            }
-            50% { 
-                color: #0000ff; 
-                transform: scale(1.1) skew(15deg, 10deg) rotate(-5deg);
-                text-shadow: 0 0 50px #0000ff;
-            }
-            75% { 
-                color: #ffff00; 
-                transform: scale(1.3) skew(-15deg, -10deg) rotate(3deg);
-                text-shadow: 0 0 50px #ffff00;
-            }
-            100% { 
-                color: #ff00ff; 
-                transform: scale(1) skew(10deg, 5deg) rotate(0deg);
-                text-shadow: 0 0 50px #ff00ff;
-            }
-        }
-
-        /* === EMOJI RAIN === */
-        .emoji-storm {
-            position: fixed;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            font-size: 30px;
-            animation: emojiColorShift 0.1s infinite;
-        }
-        
-        @keyframes emojiColorShift {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
-        }
-
-        .emoji {
+        /* === LEFT HAND WITH CIGARETTE === */
+        .left-hand {
             position: absolute;
-            animation: emojiFall 2s linear forwards;
-            text-shadow: 0 0 10px currentColor;
-        }
-        
-        @keyframes emojiFall {
-            0% { 
-                transform: translateY(-100px) rotate(0deg) scale(0.5);
-                opacity: 0;
-            }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { 
-                transform: translateY(100vh) rotate(360deg) scale(1.5);
-                opacity: 0;
-            }
+            bottom: 30%;
+            left: 10%;
+            width: 200px;
+            height: 300px;
+            transform: rotate(-10deg) translateZ(50px);
+            z-index: 100;
         }
 
-        /* === TRENDING BADGES === */
-        .trending-badge {
-            position: fixed;
-            padding: 20px 40px;
-            background: linear-gradient(45deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff);
+        .hand {
+            position: absolute;
+            width: 120px;
+            height: 180px;
+            background: linear-gradient(45deg, #e8c4a1, #d4a574);
+            border-radius: 60px 60px 20px 20px;
+            box-shadow: 
+                -5px 5px 15px rgba(0,0,0,0.5),
+                inset 2px -2px 10px rgba(0,0,0,0.3);
+        }
+
+        .cigarette {
+            position: absolute;
+            top: 40px;
+            left: 110px;
+            width: 80px;
+            height: 6px;
+            background: linear-gradient(to right, #fff, #8b4513);
+            border-radius: 3px;
+            transform: rotate(15deg);
+            animation: cigaretteGlow 3s infinite alternate;
+        }
+
+        .ash {
+            position: absolute;
+            top: 35px;
+            left: 185px;
+            width: 8px;
+            height: 12px;
+            background: #d3d3d3;
+            border-radius: 4px;
+            animation: ashFall 5s infinite;
+        }
+
+        .smoke {
+            position: absolute;
+            top: 30px;
+            left: 190px;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: smokeRise 4s infinite ease-out;
+            filter: blur(10px);
+        }
+
+        @keyframes cigaretteGlow {
+            0% { box-shadow: 0 0 5px #ff4500; }
+            50% { box-shadow: 0 0 15px #ff4500, 0 0 25px #ff8c00; }
+            100% { box-shadow: 0 0 5px #ff4500; }
+        }
+
+        @keyframes ashFall {
+            0% { transform: translateY(0px); opacity: 1; }
+            80% { transform: translateY(100px); opacity: 0.5; }
+            100% { transform: translateY(100px); opacity: 0; }
+        }
+
+        @keyframes smokeRise {
+            0% { transform: translateY(0px) scale(0.5); opacity: 0.8; }
+            100% { transform: translateY(-200px) scale(2); opacity: 0; }
+        }
+
+        /* === RIGHT HAND WITH PHONE === */
+        .right-hand {
+            position: absolute;
+            bottom: 25%;
+            right: 15%;
+            width: 180px;
+            height: 320px;
+            transform: rotate(5deg) translateZ(100px);
+            z-index: 100;
+        }
+
+        .phone {
+            position: absolute;
+            top: 50px;
+            width: 120px;
+            height: 220px;
+            background: #1a1a1a;
+            border-radius: 15px;
+            box-shadow: 
+                0 0 0 2px #333,
+                inset 0 0 20px rgba(255,255,255,0.1),
+                5px 5px 20px rgba(0,0,0,0.7);
+            overflow: hidden;
+        }
+
+        .phone-screen {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 110px;
+            height: 210px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            overflow: hidden;
+            font-size: 6px;
             color: white;
-            font-weight: 900;
-            font-size: 24px;
-            border-radius: 50px;
-            animation: badgeHype 0.1s infinite alternate;
-            mix-blend-mode: overlay;
-            z-index: 500;
-        }
-        
-        @keyframes badgeHype {
-            0% { 
-                transform: scale(1) rotate(0deg);
-                box-shadow: 0 0 50px #ff0000;
-            }
-            100% { 
-                transform: scale(1.3) rotate(5deg);
-                box-shadow: 0 0 50px #00ffff;
-            }
+            padding: 8px;
         }
 
-        /* === SOCIAL MEDIA UI ELEMENTS === */
-        .ui-overlay {
-            position: fixed;
-            width: 100%; height: 100%;
-            pointer-events: none;
+        .phone-content {
+            animation: screenFlicker 10s infinite;
         }
 
-        .notification {
+        @keyframes screenFlicker {
+            0%, 100% { opacity: 1; }
+            95% { opacity: 0.9; }
+            96% { opacity: 0.7; }
+            97% { opacity: 0.9; }
+            98% { opacity: 0.8; }
+            99% { opacity: 1; }
+        }
+
+        /* === FLYING EFFECT BACKGROUND === */
+        .flying-scene {
+            position: absolute;
+            width: 500%;
+            height: 200%;
+            background: 
+                linear-gradient(to bottom, 
+                    #87CEEB 0%, 
+                    #4682B4 30%, 
+                    #1E90FF 70%, 
+                    #00008B 100%);
+            animation: flyForward 20s linear infinite;
+            transform-style: preserve-3d;
+        }
+
+        .cloud {
             position: absolute;
             background: rgba(255,255,255,0.9);
-            padding: 15px 25px;
-            border-radius: 25px;
-            font-weight: bold;
-            animation: notificationPop 0.5s infinite alternate;
-            box-shadow: 0 0 30px currentColor;
-        }
-        
-        @keyframes notificationPop {
-            0% { transform: scale(0.8) translateX(-100px); opacity: 0; }
-            100% { transform: scale(1) translateX(0px); opacity: 1; }
+            border-radius: 50px;
+            filter: blur(5px);
+            animation: cloudFloat 15s infinite ease-in-out;
         }
 
-        /* === HYPE CONTENT BOX === */
-        .main-content {
+        .building {
+            position: absolute;
+            bottom: 0;
+            background: linear-gradient(to top, #2c3e50, #34495e);
+            animation: buildingPass 8s infinite linear;
+        }
+
+        @keyframes flyForward {
+            0% { transform: translateZ(-1000px) translateY(0px); }
+            100% { transform: translateZ(100px) translateY(-50px); }
+        }
+
+        @keyframes cloudFloat {
+            0%, 100% { transform: translateX(0px) translateY(0px); }
+            50% { transform: translateX(100px) translateY(-20px); }
+        }
+
+        @keyframes buildingPass {
+            0% { transform: translateX(-100px); }
+            100% { transform: translateX(100vw); }
+        }
+
+        /* === COFFEE JITTERS === */
+        .coffee-effect {
             position: fixed;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0,0,0,0.8);
-            padding: 60px 80px;
-            border: 8px solid;
-            border-image: linear-gradient(45deg, #ff0000, #00ff00, #0000ff, #ffff00, #ff00ff) 1;
-            animation: contentPulse 0.05s infinite alternate;
-            z-index: 10000;
-            text-align: center;
-            backdrop-filter: blur(10px);
-        }
-        
-        @keyframes contentPulse {
-            0% { 
-                box-shadow: 
-                    0 0 100px #ff0000,
-                    0 0 200px #00ff00,
-                    inset 0 0 100px #0000ff;
-            }
-            100% { 
-                box-shadow: 
-                    0 0 100px #00ffff,
-                    0 0 200px #ff00ff,
-                    inset 0 0 100px #ffff00;
-            }
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(139, 69, 19, 0.1) 0%, transparent 50%);
+            animation: coffeePulse 2s infinite alternate;
+            pointer-events: none;
+            z-index: 50;
         }
 
-        .main-title {
-            font-size: 4em;
-            background: linear-gradient(45deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: titleHype 0.03s infinite;
-            margin-bottom: 30px;
-        }
-        
-        @keyframes titleHype {
-            0% { transform: scale(1) skew(5deg, 2deg); }
-            50% { transform: scale(1.1) skew(-5deg, -2deg); }
-            100% { transform: scale(1) skew(5deg, 2deg); }
+        @keyframes coffeePulse {
+            0% { opacity: 0.1; transform: scale(1); }
+            100% { opacity: 0.3; transform: scale(1.1); }
         }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin: 30px 0;
+        /* === HEARTBEAT EFFECT === */
+        .heartbeat {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255,0,0,0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: heartbeat 1.5s infinite;
+            pointer-events: none;
+            z-index: 25;
         }
-        
-        .stat {
-            background: rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 15px;
-            animation: statFlash 0.1s infinite;
-            border: 2px solid;
-        }
-        
-        @keyframes statFlash {
-            0% { border-color: #ff0000; background: #00ff00; }
-            33% { border-color: #00ff00; background: #0000ff; }
-            66% { border-color: #0000ff; background: #ffff00; }
-            100% { border-color: #ffff00; background: #ff0000; }
+
+        @keyframes heartbeat {
+            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.3; }
+            100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <div class="hype-grid"></div>
-    <div class="strobe-overlay"></div>
-    <div class="emoji-storm" id="emojiContainer"></div>
-    <div class="ui-overlay" id="uiOverlay"></div>
-
-    <!-- HYPE TEXT OVERLAYS -->
-    <div class="hype-text" style="top: 5%; left: 5%;">TRENDING</div>
-    <div class="hype-text" style="top: 15%; right: 5%;">VIRAL</div>
-    <div class="hype-text" style="bottom: 20%; left: 10%;">HYPE</div>
-    <div class="hype-text" style="bottom: 10%; right: 15%;">FIRE</div>
-    <div class="hype-text" style="top: 50%; left: 2%;">LIT</div>
-    <div class="hype-text" style="top: 60%; right: 2%;">GOATED</div>
-
-    <!-- TRENDING BADGES -->
-    <div class="trending-badge" style="top: 30%; left: 20%;">#1 TRENDING</div>
-    <div class="trending-badge" style="top: 70%; right: 25%;">BREAKING</div>
-    <div class="trending-badge" style="bottom: 30%; left: 15%;">HOT 🔥</div>
-
-    <!-- MAIN CONTENT -->
-    <div class="main-content">
-        <div class="main-title">🚀 ECS GOATED 🚀</div>
-        
-        <div class="stats-grid">
-            <div class="stat">🔥 2.4M VIEWS</div>
-            <div class="stat">💫 500K LIKES</div>
-            <div class="stat">⚡ 100K SHARES</div>
-            <div class="stat">🎯 #1 TRENDING</div>
+    <div class="pov-body">
+        <!-- Flying Scene -->
+        <div class="flying-scene">
+            <!-- Clouds -->
+            <div class="cloud" style="top: 20%; left: 10%; width: 150px; height: 60px;"></div>
+            <div class="cloud" style="top: 40%; left: 40%; width: 200px; height: 80px;"></div>
+            <div class="cloud" style="top: 60%; left: 70%; width: 180px; height: 70px;"></div>
+            
+            <!-- Buildings -->
+            <div class="building" style="left: 5%; width: 80px; height: 200px;"></div>
+            <div class="building" style="left: 15%; width: 120px; height: 300px;"></div>
+            <div class="building" style="left: 30%; width: 90px; height: 250px;"></div>
         </div>
 
-        <div style="font-size: 1.5em; margin: 20px 0; animation: textHype 0.05s infinite;">
-            PYTHON 🐍 × DOCKER 🐳 × TERRAFORM ☁️ × AWS ⚡
+        <!-- Left Hand with Cigarette -->
+        <div class="left-hand">
+            <div class="hand"></div>
+            <div class="cigarette"></div>
+            <div class="ash"></div>
+            <div class="smoke"></div>
+            <div class="smoke" style="animation-delay: 1s;"></div>
+            <div class="smoke" style="animation-delay: 2s;"></div>
         </div>
 
-        <a href="/api/health" style="
-            display: inline-block;
-            padding: 20px 40px;
-            background: linear-gradient(45deg, #ff0000, #ffff00, #00ff00);
-            color: white;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 1.5em;
-            border-radius: 50px;
-            animation: badgeHype 0.05s infinite;
-            margin-top: 20px;
-        ">
-            🔍 CHECK STATS
-        </a>
+        <!-- Right Hand with Phone -->
+        <div class="right-hand">
+            <div class="hand"></div>
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="phone-content">
+                        <div style="text-align: center; margin-bottom: 5px;">
+                            <strong>ECS DEPLOYMENT</strong>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.3); padding: 3px; border-radius: 2px; margin: 2px 0;">
+                            ✅ Python Flask<br>
+                            ✅ Docker<br>
+                            ✅ Terraform<br>
+                            ✅ AWS ECS<br>
+                        </div>
+                        <div style="margin-top: 5px; font-size: 5px;">
+                            Status: <span style="color: #00ff00;">RUNNING</span><br>
+                            Health: <span style="color: #00ff00;">OK</span><br>
+                            Load: <span style="color: #ffff00;">87%</span>
+                        </div>
+                        <div style="margin-top: 8px; text-align: center;">
+                            <a href="/api/health" style="color: #00ffff; font-size: 5px;">HEALTH CHECK</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Effects -->
+        <div class="coffee-effect"></div>
+        <div class="heartbeat"></div>
     </div>
 
     <script>
-        // EMOJI STORM GENERATOR
-        const emojis = ['🔥','💫','⚡','🎯','🚀','💥','🌟','🎉','👑','💎','🎊','❤️','✨','⭐'];
-        const emojiContainer = document.getElementById('emojiContainer');
-        
-        function createEmojiStorm() {
-            for (let i = 0; i < 50; i++) {
-                const emoji = document.createElement('div');
-                emoji.className = 'emoji';
-                emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-                emoji.style.left = Math.random() * 100 + 'vw';
-                emoji.style.animationDelay = Math.random() * 2 + 's';
-                emoji.style.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
-                emoji.style.fontSize = (20 + Math.random() * 30) + 'px';
-                emojiContainer.appendChild(emoji);
-                
-                setTimeout(() => emoji.remove(), 2000);
-            }
-        }
-        setInterval(createEmojiStorm, 100);
-
-        // SOCIAL MEDIA NOTIFICATIONS
-        const notifications = [
-            "🔥 2.4M VIEWS!", "💫 TRENDING #1", "⚡ 500K LIKES", 
-            "🎯 GOATED AF", "🚀 VIRAL POST", "💎 BREAKING RECORDS"
-        ];
-        const uiOverlay = document.getElementById('uiOverlay');
-        
-        function spawnNotification() {
-            const notif = document.createElement('div');
-            notif.className = 'notification';
-            notif.textContent = notifications[Math.floor(Math.random() * notifications.length)];
-            notif.style.top = Math.random() * 80 + 10 + '%';
-            notif.style.left = Math.random() * 80 + 10 + '%';
-            notif.style.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
-            notif.style.animationDelay = Math.random() + 's';
-            uiOverlay.appendChild(notif);
-            
-            setTimeout(() => notif.remove(), 2000);
-        }
-        setInterval(spawnNotification, 200);
-
-        // BACKGROUND COLOR CYCLING
-        setInterval(() => {
-            document.body.style.background = `hsl(${Math.random() * 360}, 100%, ${10 + Math.random() * 20}%)`;
-        }, 100);
-
-        // HYPE TEXT MOVEMENT
-        setInterval(() => {
-            const hypeTexts = document.querySelectorAll('.hype-text');
-            hypeTexts.forEach(text => {
-                text.style.top = Math.random() * 90 + 5 + '%';
-                text.style.left = Math.random() * 90 + 5 + '%';
-                text.style.fontSize = (80 + Math.random() * 80) + 'px';
-            });
-        }, 500);
-
-        // TRENDING BADGE MOVEMENT
-        setInterval(() => {
-            const badges = document.querySelectorAll('.trending-badge');
-            badges.forEach(badge => {
-                badge.style.top = Math.random() * 80 + 10 + '%';
-                badge.style.left = Math.random() * 80 + 10 + '%';
-            });
-        }, 300);
-
-        // MOUSE INTERACTION HYPE
+        // Enhanced shaky cam based on mouse movement
         document.addEventListener('mousemove', (e) => {
-            for (let i = 0; i < 10; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.textContent = '✨';
-                sparkle.style.position = 'fixed';
-                sparkle.style.left = (e.clientX + Math.random() * 100 - 50) + 'px';
-                sparkle.style.top = (e.clientY + Math.random() * 100 - 50) + 'px';
-                sparkle.style.fontSize = (20 + Math.random() * 30) + 'px';
-                sparkle.style.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
-                sparkle.style.animation = `emojiFall ${1 + Math.random()}s forwards`;
-                sparkle.style.zIndex = '1000';
-                document.body.appendChild(sparkle);
-                setTimeout(() => sparkle.remove(), 1000);
-            }
+            const body = document.querySelector('.pov-body');
+            const x = (e.clientX / window.innerWidth - 0.5) * 4;
+            const y = (e.clientY / window.innerHeight - 0.5) * 4;
+            body.style.transform = `translate(${x}px, ${y}px) rotate(${x * 0.1}deg)`;
         });
 
-        // RANDOM SOUND EFFECT VISUALS
+        // Random cigarette ash drops
         setInterval(() => {
-            const visualBeat = document.createElement('div');
-            visualBeat.style.position = 'fixed';
-            visualBeat.style.inset = '0';
-            visualBeat.style.background = `radial-gradient(circle, 
-                hsl(${Math.random() * 360}, 100%, 50%) 0%, 
-                transparent 70%)`;
-            visualBeat.style.animation = 'hypeStrobe 0.1s forwards';
-            visualBeat.style.mixBlendMode = 'overlay';
-            document.body.appendChild(visualBeat);
-            setTimeout(() => visualBeat.remove(), 100);
-        }, 150);
+            const ash = document.createElement('div');
+            ash.className = 'ash';
+            ash.style.left = (185 + Math.random() * 10) + 'px';
+            ash.style.animationDelay = Math.random() + 's';
+            document.querySelector('.left-hand').appendChild(ash);
+            
+            setTimeout(() => ash.remove(), 5000);
+        }, 2000);
 
-        // VIEW COUNT INCREMENT (FAKE HYPE)
-        let viewCount = 2400000;
+        // Phone screen flicker (bad signal simulation)
         setInterval(() => {
-            viewCount += Math.floor(Math.random() * 1000);
-            document.querySelector('.stat').textContent = `🔥 ${(viewCount/1000000).toFixed(1)}M VIEWS`;
-        }, 100);
+            const screen = document.querySelector('.phone-screen');
+            screen.style.filter = `hue-rotate(${Math.random() * 360}deg) brightness(${0.8 + Math.random() * 0.4})`;
+        }, 3000);
 
-        // AUTO-REFRESH FOR INFINITE SCROLL EFFECT
-        setTimeout(() => {
-            window.location.reload();
-        }, 15000);
+        // Coffee jitter intensity based on time
+        setInterval(() => {
+            const coffee = document.querySelector('.coffee-effect');
+            const intensity = 0.1 + Math.random() * 0.3;
+            coffee.style.opacity = intensity;
+        }, 1000);
+
+        // Create more smoke occasionally
+        setInterval(() => {
+            const smoke = document.createElement('div');
+            smoke.className = 'smoke';
+            smoke.style.left = (190 + Math.random() * 20) + 'px';
+            smoke.style.animationDelay = Math.random() * 2 + 's';
+            document.querySelector('.left-hand').appendChild(smoke);
+            
+            setTimeout(() => smoke.remove(), 4000);
+        }, 1500);
+
+        // Simulate occasional cough (screen shake)
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                const body = document.querySelector('.pov-body');
+                body.style.animation = 'none';
+                setTimeout(() => {
+                    body.style.animation = 'shakyCam 0.2s infinite';
+                }, 100);
+            }
+        }, 8000);
     </script>
 </body>
 </html>
