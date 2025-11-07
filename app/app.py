@@ -7,298 +7,317 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     return '''
-    <html>
-    <head>
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval';">
-        <style>
-            * { margin: 0; padding: 0; box-sizing: border-box; }
-            body { 
-                background: #000;
-                overflow: hidden;
-                font-family: 'Courier New', monospace;
-                cursor: none;
-            }
+<html>
+<head>
+    <title>SYSTEM OVERLOAD</title>
+    <style>
+        * { 
+            margin: 0; padding: 0; box-sizing: border-box; 
+            animation-duration: 0.001s !important;
+        }
+        
+        body { 
+            background: #000; 
+            overflow: hidden; 
+            font-family: 'Courier New', monospace;
+            cursor: none;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
 
-            /* === HYPER-FLASHING BACKGROUNDS === */
-            .flash-layer-1 {
-                position: fixed; width: 100%; height: 100%;
-                background: radial-gradient(circle, #ff0000, #00ff00, #0000ff);
-                animation: flash1 0.1s infinite alternate;
-                mix-blend-mode: difference;
-            }
-            .flash-layer-2 {
-                position: fixed; width: 100%; height: 100%;
-                background: conic-gradient(from 0deg, red, yellow, lime, aqua, blue, magenta, red);
-                animation: flash2 0.05s infinite linear;
-                mix-blend-mode: overlay;
-            }
-            @keyframes flash1 { 
-                0% { opacity: 1; filter: hue-rotate(0deg) blur(20px); }
-                100% { opacity: 0.8; filter: hue-rotate(180deg) blur(50px); }
-            }
-            @keyframes flash2 { 
-                0% { transform: scale(1) rotate(0deg); opacity: 0.9; }
-                100% { transform: scale(2) rotate(180deg); opacity: 0.3; }
-            }
+        /* === NUCLEAR FUSION CORE === */
+        .big-bang {
+            position: fixed;
+            top: 50%; left: 50%;
+            width: 200vmax; height: 200vmax;
+            background: 
+                radial-gradient(circle, #ff0000 0%, #00ff00 20%, #0000ff 40%, #ffff00 60%, #ff00ff 80%, #000 100%),
+                conic-gradient(from 0deg, red, orange, yellow, green, blue, indigo, violet);
+            animation: bigBang 0.01s infinite linear;
+            mix-blend-mode: difference;
+            border-radius: 50%;
+            filter: blur(100px) contrast(200%) hue-rotate(0deg);
+        }
+        
+        @keyframes bigBang {
+            0% { transform: translate(-50%, -50%) scale(0.1) rotate(0deg); opacity: 1; }
+            50% { transform: translate(-50%, -50%) scale(5) rotate(180deg); opacity: 0.5; }
+            100% { transform: translate(-50%, -50%) scale(10) rotate(360deg); opacity: 0; }
+        }
 
-            /* === SEIZURE INDUCING GRIDS === */
-            .grid-overlay {
-                position: fixed; width: 200%; height: 200%;
-                background-image: 
-                    linear-gradient(90deg, #fff 1px, transparent 1px),
-                    linear-gradient(0deg, #fff 1px, transparent 1px);
-                background-size: 10px 10px;
-                animation: gridMove 0.02s infinite linear;
-                mix-blend-mode: exclusion;
-            }
-            @keyframes gridMove {
-                0% { transform: translate(0px, 0px) rotate(0deg); }
-                100% { transform: translate(-10px, -10px) rotate(1deg); }
-            }
+        /* === QUANTUM ENTANGLEMENT FIELD === */
+        .quantum-strings {
+            position: fixed; width: 500%; height: 500%;
+            background-image: 
+                linear-gradient(90deg, transparent 49%, #fff 50%, transparent 51%),
+                linear-gradient(0deg, transparent 49%, #fff 50%, transparent 51%);
+            background-size: 50px 50px;
+            animation: stringVibrate 0.005s infinite linear;
+            mix-blend-mode: exclusion;
+        }
+        
+        @keyframes stringVibrate {
+            0% { transform: translate(0px, 0px) skew(0deg, 0deg) scale(1); }
+            25% { transform: translate(10px, 5px) skew(5deg, 3deg) scale(1.1); }
+            50% { transform: translate(-5px, 10px) skew(-3deg, 5deg) scale(0.9); }
+            75% { transform: translate(5px, -5px) skew(2deg, -2deg) scale(1.05); }
+            100% { transform: translate(0px, 0px) skew(0deg, 0deg) scale(1); }
+        }
 
-            /* === QUANTUM PARTICLES === */
-            .particle-field {
-                position: fixed; width: 100%; height: 100%;
-                pointer-events: none;
-            }
-            .particle {
-                position: absolute;
-                width: 4px; height: 4px;
-                background: #fff;
-                border-radius: 50%;
-                animation: particlePop 0.5s infinite alternate;
-                filter: blur(1px);
-            }
-            @keyframes particlePop {
-                0% { transform: scale(0) rotate(0deg); opacity: 1; }
-                100% { transform: scale(10) rotate(360deg); opacity: 0; }
-            }
+        /* === NEURAL NETWORK OVERDRIVE === */
+        .ai-consciousness {
+            position: fixed; width: 100%; height: 100%;
+            background: 
+                repeating-linear-gradient(45deg, transparent, transparent 10px, #ff00ff 10px, #ff00ff 20px),
+                repeating-linear-gradient(-45deg, transparent, transparent 10px, #00ffff 10px, #00ffff 20px);
+            animation: aiPulse 0.002s infinite alternate;
+            mix-blend-mode: color-dodge;
+        }
+        
+        @keyframes aiPulse {
+            0% { opacity: 0.1; filter: hue-rotate(0deg) invert(0); }
+            100% { opacity: 1; filter: hue-rotate(360deg) invert(1); }
+        }
 
-            /* === STROBE TEXT === */
-            .strobe-text {
-                position: fixed;
-                font-size: 120px;
-                font-weight: 900;
-                text-transform: uppercase;
-                animation: strobe 0.03s infinite;
-                text-shadow: 0 0 50px currentColor;
-                mix-blend-mode: difference;
-                z-index: 1000;
-            }
-            @keyframes strobe {
-                0% { opacity: 1; color: #ff0000; transform: skew(20deg, 10deg); }
-                25% { opacity: 0; color: #00ff00; transform: skew(-20deg, -10deg); }
-                50% { opacity: 1; color: #0000ff; transform: skew(30deg, 5deg); }
-                75% { opacity: 0; color: #ffff00; transform: skew(-30deg, 5deg); }
-                100% { opacity: 1; color: #ff00ff; transform: skew(20deg, 10deg); }
-            }
+        /* === DIMENSIONAL PORTALS === */
+        .portal {
+            position: fixed;
+            width: 300px; height: 300px;
+            background: conic-gradient(from 0deg, #ff0000, #00ff00, #0000ff, #ff0000);
+            border-radius: 50%;
+            animation: portalWarp 0.05s infinite linear;
+            mix-blend-mode: screen;
+            filter: blur(10px) contrast(200%);
+        }
+        
+        @keyframes portalWarp {
+            0% { transform: scale(0.1) rotate(0deg) skew(0deg); }
+            50% { transform: scale(2) rotate(180deg) skew(30deg, 30deg); }
+            100% { transform: scale(0.1) rotate(360deg) skew(0deg); }
+        }
 
-            /* === MATRIX RAIN ON STEROIDS === */
-            .matrix-rain {
-                position: fixed; width: 100%; height: 100%;
-                background: #000;
-                color: #0f0;
-                font-size: 14px;
-                line-height: 1;
-                overflow: hidden;
-                animation: matrixColor 0.1s infinite;
+        /* === HYPER-DENSE CONTENT === */
+        .content-overload {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            padding: 20px;
+            z-index: 10000;
+        }
+        
+        .data-cell {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid;
+            animation: cellFlash 0.01s infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            text-align: center;
+            transform-style: preserve-3d;
+        }
+        
+        @keyframes cellFlash {
+            0% { 
+                border-color: #ff0000; 
+                background: #00ff00; 
+                transform: rotateX(0deg) rotateY(0deg) scale(1);
             }
-            @keyframes matrixColor {
-                0% { color: #0f0; }
-                33% { color: #f0f; }
-                66% { color: #0ff; }
-                100% { color: #ff0; }
+            100% { 
+                border-color: #0000ff; 
+                background: #ff0000; 
+                transform: rotateX(360deg) rotateY(360deg) scale(1.5);
             }
+        }
 
-            /* === SPINNING VORTEX === */
-            .vortex {
-                position: fixed;
-                top: 50%; left: 50%;
-                width: 200vmax; height: 200vmax;
-                background: conic-gradient(from 0deg, red, orange, yellow, green, blue, indigo, violet, red);
-                animation: vortexSpin 0.3s infinite linear;
-                border-radius: 50%;
-                mix-blend-mode: hard-light;
-            }
-            @keyframes vortexSpin {
-                0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
-                100% { transform: translate(-50%, -50%) rotate(360deg) scale(1.5); }
-            }
+        /* === INFINITE RECURSION MIRRORS === */
+        .recursion-mirror {
+            position: fixed;
+            width: 200px; height: 200px;
+            border: 5px solid;
+            animation: mirrorInfinite 0.1s infinite linear;
+            box-shadow: 
+                inset 0 0 50px #fff,
+                0 0 100px currentColor;
+            mix-blend-mode: overlay;
+        }
+        
+        @keyframes mirrorInfinite {
+            0% { transform: scale(0.1) rotate(0deg); opacity: 0; }
+            50% { transform: scale(1) rotate(180deg); opacity: 1; }
+            100% { transform: scale(0.1) rotate(360deg); opacity: 0; }
+        }
 
-            /* === GLITCH EFFECTS === */
-            .glitch-layer {
-                position: fixed; width: 100%; height: 100%;
-                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="black"/><path d="M0 0L100 100M100 0L0 100" stroke="white" stroke-width="1"/></svg>');
-                animation: glitch 0.02s infinite;
-                mix-blend-mode: overlay;
-            }
-            @keyframes glitch {
-                0% { transform: translate(0px, 0px); opacity: 1; }
-                25% { transform: translate(5px, -5px); opacity: 0.8; }
-                50% { transform: translate(-5px, 5px); opacity: 0.6; }
-                75% { transform: translate(3px, -3px); opacity: 0.9; }
-                100% { transform: translate(-3px, 3px); opacity: 1; }
-            }
+        /* === TEMPORAL ANOMALIES === */
+        .time-paradox {
+            position: fixed;
+            width: 100px; height: 100px;
+            background: repeating-conic-gradient(#ff0000 0% 25%, #00ff00 25% 50%, #0000ff 50% 75%, #ffff00 75% 100%);
+            animation: timeReverse 0.001s infinite reverse;
+            mix-blend-mode: difference;
+        }
+        
+        @keyframes timeReverse {
+            0% { transform: translate(0px, 0px) scale(1); }
+            100% { transform: translate(100px, 100px) scale(2); }
+        }
+    </style>
+</head>
+<body>
+    <div class="big-bang"></div>
+    <div class="quantum-strings"></div>
+    <div class="ai-consciousness"></div>
 
-            /* === CONTENT BOX - Barely readable === */
-            .content {
-                position: fixed;
-                top: 50%; left: 50%;
-                transform: translate(-50%, -50%);
-                background: rgba(0,0,0,0.9);
-                padding: 50px;
-                border: 10px solid;
-                animation: borderFlash 0.05s infinite;
-                z-index: 10000;
-                text-align: center;
-            }
-            @keyframes borderFlash {
-                0% { border-color: #ff0000; box-shadow: 0 0 100px #ff0000; }
-                25% { border-color: #00ff00; box-shadow: 0 0 100px #00ff00; }
-                50% { border-color: #0000ff; box-shadow: 0 0 100px #0000ff; }
-                75% { border-color: #ffff00; box-shadow: 0 0 100px #ffff00; }
-                100% { border-color: #ff00ff; box-shadow: 0 0 100px #ff00ff; }
-            }
+    <!-- Portal Overload -->
+    <div class="portal" style="top: 10%; left: 10%;"></div>
+    <div class="portal" style="top: 80%; right: 15%;"></div>
+    <div class="portal" style="bottom: 20%; left: 60%;"></div>
+    <div class="portal" style="top: 50%; right: 30%;"></div>
 
-            h1 {
-                font-size: 3em;
-                background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff, #ffff00);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                animation: textStrobe 0.05s infinite;
-            }
-            @keyframes textStrobe {
-                0% { transform: scale(1) skew(10deg); }
-                50% { transform: scale(1.2) skew(-10deg); }
-                100% { transform: scale(1) skew(10deg); }
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flash-layer-1"></div>
-        <div class="flash-layer-2"></div>
-        <div class="grid-overlay"></div>
-        <div class="vortex"></div>
-        <div class="matrix-rain" id="matrix"></div>
-        <div class="particle-field" id="particles"></div>
-        <div class="glitch-layer"></div>
+    <!-- Recursion Chaos -->
+    <div class="recursion-mirror" style="top: 5%; left: 20%;"></div>
+    <div class="recursion-mirror" style="bottom: 10%; right: 25%;"></div>
+    <div class="recursion-mirror" style="top: 70%; left: 80%;"></div>
 
-        <!-- Strobe words everywhere -->
-        <div class="strobe-text" style="top: 10%; left: 5%;">WARNING</div>
-        <div class="strobe-text" style="top: 30%; right: 5%;">EPILEPSY</div>
-        <div class="strobe-text" style="bottom: 20%; left: 20%;">OVERLOAD</div>
-        <div class="strobe-text" style="bottom: 40%; right: 15%;">MAXIMUM</div>
+    <!-- Time Paradoxes -->
+    <div class="time-paradox" style="top: 30%; left: 40%;"></div>
+    <div class="time-paradox" style="bottom: 40%; right: 60%;"></div>
 
-        <div class="content">
-            <h1>💀 NEURAL MELTDOWN 💀</h1>
-            <p style="color: white; font-size: 1.5em; animation: strobe 0.05s infinite;">
-                ⚡ QUANTUM ECS DEPLOYMENT SUCCESS ⚡
-            </p>
-            <p style="margin: 20px 0;">
-                <span style="animation: strobe 0.03s infinite;">PYTHON</span> • 
-                <span style="animation: strobe 0.04s infinite;">DOCKER</span> • 
-                <span style="animation: strobe 0.05s infinite;">TERRAFORM</span> • 
-                <span style="animation: strobe 0.02s infinite;">AWS ECS</span>
-            </p>
-            <a href="/api/health" style="color: white; font-size: 2em; animation: strobe 0.01s infinite;">
-                🏥 HEALTH CHECK 🏥
-            </a>
-        </div>
+    <!-- Data Grid Overload -->
+    <div class="content-overload" id="dataGrid"></div>
 
-        <script>
-            // Matrix rain with maximum intensity
-            const matrix = document.getElementById('matrix');
-            const chars = '01!@#$%^&*()_+-=[]{}|;:,.<>?║╗╝╣╩╚╔╠╦╬';
-            let matrixText = '';
-            
-            function updateMatrix() {
-                matrixText = '';
-                for (let i = 0; i < 5000; i++) {
-                    matrixText += Math.random() > 0.3 ? chars[Math.floor(Math.random() * chars.length)] : ' ';
+    <script>
+        // Create infinite data grid
+        const dataGrid = document.getElementById('dataGrid');
+        for (let i = 0; i < 1000; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'data-cell';
+            cell.textContent = Math.random().toString(36).substring(2, 8).toUpperCase();
+            cell.style.animationDelay = Math.random() + 's';
+            cell.style.borderColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            dataGrid.appendChild(cell);
+        }
+
+        // Portal spawner
+        setInterval(() => {
+            const portal = document.createElement('div');
+            portal.className = 'portal';
+            portal.style.left = Math.random() * 100 + '%';
+            portal.style.top = Math.random() * 100 + '%';
+            portal.style.width = Math.random() * 500 + 'px';
+            portal.style.height = Math.random() * 500 + 'px';
+            document.body.appendChild(portal);
+            setTimeout(() => portal.remove(), 1000);
+        }, 10);
+
+        // Quantum string manipulation
+        setInterval(() => {
+            document.querySelector('.quantum-strings').style.backgroundSize = 
+                `${Math.random() * 100}px ${Math.random() * 100}px`;
+        }, 1);
+
+        // Big Bang intensity controller
+        setInterval(() => {
+            const bang = document.querySelector('.big-bang');
+            bang.style.filter = `blur(${Math.random() * 200}px) contrast(${Math.random() * 500}%) hue-rotate(${Math.random() * 720}deg)`;
+        }, 5);
+
+        // DOM corruption simulation
+        setInterval(() => {
+            const allElements = document.querySelectorAll('*');
+            allElements.forEach(el => {
+                if (Math.random() > 0.3) {
+                    el.style.transform = `
+                        matrix3d(
+                            ${Math.random()}, ${Math.random()}, ${Math.random()}, ${Math.random()},
+                            ${Math.random()}, ${Math.random()}, ${Math.random()}, ${Math.random()},
+                            ${Math.random()}, ${Math.random()}, ${Math.random()}, ${Math.random()},
+                            ${Math.random() * 100}, ${Math.random() * 100}, ${Math.random() * 100}, ${Math.random()}
+                        )
+                    `;
                 }
-                matrix.innerHTML = matrixText;
-            }
-            setInterval(updateMatrix, 50);
-
-            // Particle explosion
-            const particleField = document.getElementById('particles');
-            function createParticles() {
-                for (let i = 0; i < 100; i++) {
-                    const particle = document.createElement('div');
-                    particle.className = 'particle';
-                    particle.style.left = Math.random() * 100 + 'vw';
-                    particle.style.top = Math.random() * 100 + 'vh';
-                    particle.style.animationDelay = Math.random() + 's';
-                    particle.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
-                    particleField.appendChild(particle);
-                    
-                    setTimeout(() => particle.remove(), 1000);
-                }
-            }
-            setInterval(createParticles, 100);
-
-            // Background color seizure
-            setInterval(() => {
-                document.body.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
-            }, 100);
-
-            // Random DOM manipulation
-            setInterval(() => {
-                const elements = document.querySelectorAll('*');
-                elements.forEach(el => {
-                    if (Math.random() > 0.7) {
-                        el.style.transform = `scale(${0.5 + Math.random()}) rotate(${Math.random() * 360}deg)`;
-                    }
-                });
-            }, 200);
-
-            // Audio context simulation (visualizer-like effects)
-            setInterval(() => {
-                const newStyle = document.createElement('style');
-                newStyle.textContent = `
-                    @keyframes seizure${Date.now()} {
-                        0% { filter: invert(1) hue-rotate(0deg) blur(${Math.random() * 20}px); }
-                        100% { filter: invert(0) hue-rotate(360deg) blur(${Math.random() * 20}px); }
-                    }
-                    body { animation: seizure${Date.now()} 0.1s infinite; }
-                `;
-                document.head.appendChild(newStyle);
-                setTimeout(() => newStyle.remove(), 1000);
-            }, 500);
-
-            // Mouse follower with trail
-            document.addEventListener('mousemove', (e) => {
-                const trail = document.createElement('div');
-                trail.style.position = 'fixed';
-                trail.style.left = e.clientX + 'px';
-                trail.style.top = e.clientY + 'px';
-                trail.style.width = '50px';
-                trail.style.height = '50px';
-                trail.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
-                trail.style.borderRadius = '50%';
-                trail.style.animation = 'particlePop 0.5s forwards';
-                trail.style.mixBlendMode = 'difference';
-                document.body.appendChild(trail);
-                setTimeout(() => trail.remove(), 500);
             });
+        }, 50);
 
-            // Random alert sounds simulation
-            setInterval(() => {
-                if (Math.random() > 0.9) {
-                    // Visual "beep" effect
-                    const beep = document.createElement('div');
-                    beep.style.position = 'fixed';
-                    beep.style.inset = '0';
-                    beep.style.background = '#fff';
-                    beep.style.animation = 'flash1 0.05s';
-                    document.body.appendChild(beep);
-                    setTimeout(() => beep.remove(), 100);
+        // CSS Rule Bombardment
+        setInterval(() => {
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes apocalypse${Date.now()} {
+                    0% { 
+                        filter: invert(${Math.random()}) hue-rotate(${Math.random() * 720}deg) 
+                               blur(${Math.random() * 50}px) contrast(${Math.random() * 1000}%);
+                        transform: scale(${Math.random() * 3}) rotate3d(${Math.random()}, ${Math.random()}, ${Math.random()}, ${Math.random() * 360}deg);
+                    }
+                    100% { 
+                        filter: invert(${Math.random()}) hue-rotate(${Math.random() * 720}deg) 
+                               blur(${Math.random() * 50}px) contrast(${Math.random() * 1000}%);
+                        transform: scale(${Math.random() * 3}) rotate3d(${Math.random()}, ${Math.random()}, ${Math.random()}, ${Math.random() * 360}deg);
+                    }
                 }
-            }, 500);
-        </script>
-    </body>
-    </html>
-    '''
+                body { animation: apocalypse${Date.now()} 0.001s infinite; }
+            `;
+            document.head.appendChild(style);
+            setTimeout(() => style.remove(), 100);
+        }, 10);
+
+        // Mouse Event Cataclysm
+        document.addEventListener('mousemove', (e) => {
+            for (let i = 0; i < 50; i++) {
+                const explosion = document.createElement('div');
+                explosion.style.position = 'fixed';
+                explosion.style.left = (e.clientX + Math.random() * 200 - 100) + 'px';
+                explosion.style.top = (e.clientY + Math.random() * 200 - 100) + 'px';
+                explosion.style.width = '100px';
+                explosion.style.height = '100px';
+                explosion.style.background = `radial-gradient(circle, 
+                    hsl(${Math.random() * 360}, 100%, 50%) 0%, 
+                    hsl(${Math.random() * 360}, 100%, 50%) 50%, 
+                    transparent 100%)`;
+                explosion.style.animation = `bigBang ${Math.random() * 0.1}s forwards`;
+                explosion.style.mixBlendMode = 'difference';
+                document.body.appendChild(explosion);
+                setTimeout(() => explosion.remove(), 100);
+            }
+        });
+
+        // Audio Frequency Simulation
+        setInterval(() => {
+            const visualizer = document.createElement('div');
+            visualizer.style.position = 'fixed';
+            visualizer.style.inset = '0';
+            visualizer.style.background = `conic-gradient(
+                from ${Math.random() * 360}deg,
+                hsl(${Math.random() * 360}, 100%, 50%),
+                hsl(${Math.random() * 360}, 100%, 50%),
+                hsl(${Math.random() * 360}, 100%, 50%),
+                hsl(${Math.random() * 360}, 100%, 50%)
+            )`;
+            visualizer.style.animation = `aiPulse 0.001s forwards`;
+            visualizer.style.mixBlendMode = 'exclusion';
+            document.body.appendChild(visualizer);
+            setTimeout(() => visualizer.remove(), 10);
+        }, 5);
+
+        // Memory Leak Simulation (Intentional)
+        let memoryPool = [];
+        setInterval(() => {
+            for (let i = 0; i < 100; i++) {
+                memoryPool.push(new Array(1000).fill('💥'.repeat(100)));
+            }
+        }, 100);
+
+        // Final System Overload
+        setTimeout(() => {
+            window.location.reload();
+        }, 10000); // Reload every 10 seconds for infinite chaos
+    </script>
+</body>
+</html>
+'''
 
 @app.route('/api/health')
 def health():
