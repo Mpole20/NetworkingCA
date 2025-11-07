@@ -25,6 +25,12 @@ def home():
                 font-size: 16px;
                 line-height: 1;
                 white-space: pre;
+                animation: spin3D 3s linear infinite;
+                transform-style: preserve-3d;
+            }
+            @keyframes spin3D {
+                0% { transform: rotateY(0deg); }
+                100% { transform: rotateY(360deg); }
             }
         </style>
     </head>
@@ -45,7 +51,7 @@ def home():
     </html>
     '''
 
-# ADD THIS HEALTH CHECK FUNCTION
+
 @app.route('/api/health')
 def health():
     return jsonify({
@@ -54,6 +60,5 @@ def health():
         'service': 'Python Flask App'
     })
 
-# KEEP THIS TOO
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000, debug=True)
